@@ -1,51 +1,34 @@
 var expect = require('chai').expect
 var path = require('path')
+var fs = require('fs')
+var url = require('url')
 
 describe('url-transformer.js', function () {
   it('must export function and create output/paths.txt', function(done){
-    var hash = require(path.join(__dirname, '../main'))
-    expect(hash(plainPassword1, salt1)).to.equal(hash1)
-    expect(hash(plainPassword2, salt2)).to.equal(hash2)
-    done()
-  })
-})
 
-var test = require('tape'),
-  cp = require('child_process')
-
-test('node version', function (t) {
-  t.plan(6)
-  child = cp.exec('node url-transformer',
-  function (error, stdout, stderr) {
-    console.log('stdout: ' + stdout)
-    console.log('stderr: ' + stderr)
-    t.equal(stderr, '')
-    if (error !== null) {
-      console.log('exec error: ' + error)
-    }
-    stdout = stdout.replace('\n','')
-    t.equal(stdout, 'Transformation completed')
-
-    var fs = require('fs')
-    var path = require('path')
-    var url = require('url')
-
+    var urlTransformer = require(path.join(__dirname, '../url-transformer'))
     var inputFile = path.join(__dirname, '..', 'data', 'urls.txt')
-    fs.readFile(inputFile, {encoding: 'utf8'}, function(error, urlsList){
-      var pathnameListExpected = urlsList.split('\n').map(function(fullUrl){
-        return url.parse(fullUrl).pathname
-      })
-      var outputFile = path.join(__dirname, '..','output', 'paths.txt')
-      fs.readFile(outputFile, {encoding: 'utf8'}, function(error, pathnameList) {
-        var pathnameListActual = pathnameList.split('\n')
-        t.equal(pathnameListExpected.length, pathnameListActual.length)
-        var l = pathnameListExpected.length
-        var n = Math.round(Math.random()*l)
-        t.equal(pathnameListExpected[n], pathnameListActual[n])
-        n = Math.round(Math.random()*l)
-        t.equal(pathnameListExpected[n], pathnameListActual[n])
-        n = Math.round(Math.random()*l)
-        t.equal(pathnameListExpected[n], pathnameListActual[n])
+    var outputFile = path.join(__dirname, '..', 'output', 'paths.txt')
+    fs.unlinkSync(outputFile)
+    urlTransformer(inputFile, outputFile, function(message) {
+      expect(message).to.equal('Transformation completed')
+      fs.readFile(inputFile, {encoding: 'utf8'}, function(error, urlsList){
+        var pathnameListExpected = urlsList.split('\n').map(function(fullUrl){
+          return url.parse(fullUrl).pathname
+        })
+        var outputFile = path.join(__dirname, '..','output', 'paths.txt')
+        fs.readFile(outputFile, {encoding: 'utf8'}, function(error, pathnameList) {
+          var pathnameListActual = pathnameList.split('\n')
+          expect(pathnameListExpected.length).to.equal(pathnameListActual.length)
+          var l = pathnameListExpected.length
+          var n = Math.round(Math.random()*l)
+          expect(pathnameListExpected[n]).to.equal(pathnameListActual[n])
+          n = Math.round(Math.random()*l)
+          expect(pathnameListExpected[n]).to.equal(pathnameListActual[n])
+          n = Math.round(Math.random()*l)
+          expect(pathnameListExpected[n]).to.equal(pathnameListActual[n])
+          done()
+        })
       })
     })
   })
