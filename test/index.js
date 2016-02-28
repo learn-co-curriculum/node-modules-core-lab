@@ -1,3 +1,6 @@
+var expect = require('chai').expect
+var path = require('path')
+
 var test = require('tape'),
   cp = require('child_process')
 
