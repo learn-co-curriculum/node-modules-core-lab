@@ -1,6 +1,15 @@
 var expect = require('chai').expect
 var path = require('path')
 
+describe('url-transformer.js', function () {
+  it('must export function and create output/paths.txt', function(done){
+    var hash = require(path.join(__dirname, '../main'))
+    expect(hash(plainPassword1, salt1)).to.equal(hash1)
+    expect(hash(plainPassword2, salt2)).to.equal(hash2)
+    done()
+  })
+})
+
 var test = require('tape'),
   cp = require('child_process')
 
