@@ -8,6 +8,8 @@
 
 ## Introduction
 
+There's a file with logs of requests. They look like URLs, i.e., they have protocol, domain, path, etc. Your task is to create a script which will create a new file with only the paths.
+
 In this lab, you'll start mastering the three core modules: fs, url and path.
 
 ## Instructions
@@ -23,7 +25,7 @@ In this lab, you'll start mastering the three core modules: fs, url and path.
 ### Extra Info
 
 
-First three lines of the `data/urls.txt` file out of 1000:
+There are a 1,000 lines/requests in the `data/urls.txt` file (so you can't cheat by doing this work manually!). To give you a sample of this data, here are the first three lines:
 
 ```
 http://ning.com/interdum/mauris/non/ligula/pellentesque/ultrices.xml?laoreet=nec&ut=dui&rhoncus=luctus&aliquet=rutrum&pulvinar=nulla&sed=tellus&nisl=in&nunc=sagittis&rhoncus=dui&dui=vel&vel=nisl&sem=duis&sed=ac&sagittis=nibh&nam=fusce&congue=lacus&risus=purus&semper=aliquet&porta=at&volutpat=feugiat&quam=non&pede=pretium&lobortis=quis&ligula=lectus&sit=suspendisse&amet=potenti&eleifend=in&pede=eleifend&libero=quam&quis=a&orci=odio&nullam=in&molestie=hac&nibh=habitasse&in=platea&lectus=dictumst&pellentesque=maecenas&at=ut&nulla=massa&suspendisse=quis&potenti=augue&cras=luctus&in=tincidunt&purus=nulla&eu=mollis&magna=molestie&vulputate=lorem&luctus=quisque&cum=ut&sociis=erat&natoque=curabitur&penatibus=gravida&et=nisi&magnis=at&dis=nibh&parturient=in&montes=hac&nascetur=habitasse&ridiculus=platea
