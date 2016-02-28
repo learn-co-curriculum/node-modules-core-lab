@@ -14,12 +14,13 @@ In this lab, you'll start mastering the three core modules: fs, url and path.
 
 ## Instructions
 
-1. Create a program file `url-transformer.js`
-2. Read a data file `data/urls.txt` using `fs` and `path.join()` to point to the file
-3. Parse each line of the data from the `urls.txt` file with the `url` core module to get only the path name part, i.e., strip away the domain and protocol
-4. Write only the path names to a new file `output/paths.txt` using `path` for the path to the file.
-5. Print "Transformation completed" when the job is done.
-6. Results will be tested at random so manual parsing won't work.
+1. Create a module file `url-transformer.js`. It must export a function with three arguments: input file name, output file name and callback.
+1. In `url-transformer`, read a data file `data/urls.txt` using `fs` and `path.join()` to point to the file.
+1. Parse each line of the data from the `urls.txt` file with the `url` core module to get only the path name part, i.e., strip away the domain and protocol.
+1. Write only the path names to a new file `output/paths.txt` using `path` for the path to the file.
+1. Callback with "Transformation completed" when the job is done.
+1. Results will be tested at random so manual parsing won't work. ;-)
+1. Test your module with your CLI runner `index.js` by executing `node .` in the terminal. `node .` is an equivalent to `node index` or `node index.js`.
 
 
 ### Extra Info
@@ -34,3 +35,16 @@ https://marriott.com/arcu.js?convallis=ut&duis=nunc&consequat=vestibulum&dui=ant
 ```
 
 `fs.unlinkSync(outputFile)` is a method to remove filename. We use it in test to delete the output file (in case it's left there from a previous run of the program).
+
+We create a CLI program `index.js` for you. You can use it to launch your transformer from the terminal. It imports the module which you are suppose to create, then calls the function.
+
+
+```js
+var path = require('path')
+var urlTransformer = require('./url-transformer')
+var inputFile = path.join('data', 'urls.txt')
+var outputFile = path.join('output', 'paths.txt')
+urlTransformer(inputFile, outputFile, function(message) {
+  console.log(message)
+})
+```
