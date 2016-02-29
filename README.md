@@ -8,7 +8,7 @@
 
 ## Introduction
 
-There's a file with logs of requests. They look like URLs, i.e., they have protocol, domain, path, etc. Your task is to create a script which will create a new file with only the paths.
+There's a log with records of HTTP requests. They look like URLs with a protocol, domain, path, etc. Your task is to create a script which will create a new file with only the paths from each URL.
 
 In this lab, you'll start mastering the three core modules: fs, url and path.
 
